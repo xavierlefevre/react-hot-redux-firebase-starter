@@ -15,7 +15,7 @@ class MessagesThread extends Component {
         {
           Object.keys(this.props.messages).map((messagesKey) => (
             <p key={messagesKey}>
-              {this.props.messages[messagesKey].content}
+              {this.props.messages[messagesKey].user} - {this.props.messages[messagesKey].content}
             </p>
           ))
         }
