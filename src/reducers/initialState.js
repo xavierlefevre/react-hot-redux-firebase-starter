@@ -21,6 +21,7 @@ export default {
     temporaryMessage: '',
     messages: {},
     loading: null,
-    error: null
+    error: null,
+    firstBatchLoaded: false,
   }
 };
