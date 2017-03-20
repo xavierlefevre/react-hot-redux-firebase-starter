@@ -21,19 +21,20 @@ export const sendMessageSuccess = (messageKey, messageContent) => (
 );
 export const sendMessageError = error => ({ type: types.CHAT_SEND_MESSAGE_ERROR, error });
 
-export function getMessages() {
+export function getLastMessages() {
   return (dispatch) => {
     firebase
     .database()
     .ref('messages')
+    .limitToLast(10)
     .once('value')
     .then(result => {
-      dispatch(getMessagesSuccess(result.val()));
+      dispatch(getLastMessagesSuccess(result.val()));
     })
     .catch(error => {
-      dispatch(getMessagesSuccess(error));
+      dispatch(getLastMessagesSuccess(error));
     });
   };
 }
-export const getMessagesSuccess = (messages) => ({ type: types.CHAT_GET_MESSAGES_SUCCESS, messages });
-export const getMessagesError = error => ({ type: types.CHAT_GET_MESSAGES_ERROR, error });
+export const getLastMessagesSuccess = (messages) => ({ type: types.CHAT_GET_LAST_MESSAGES_SUCCESS, messages });
+export const getLastMessagesError = error => ({ type: types.CHAT_GET_LAST_MESSAGES_ERROR, error });

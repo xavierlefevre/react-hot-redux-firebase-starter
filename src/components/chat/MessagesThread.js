@@ -2,11 +2,11 @@ import React, { Component, PropTypes }  from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {getMessages} from '../../actions/chatActions';
+import {getLastMessages} from '../../actions/chatActions';
 
 class MessagesThread extends Component {
   componentWillMount() {
-    this.props.actions.getMessages();
+    this.props.actions.getLastMessages();
   }
 
   render() {
@@ -37,7 +37,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({getMessages}, dispatch)
+    actions: bindActionCreators({getLastMessages}, dispatch)
   };
 }
 

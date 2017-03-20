@@ -3,7 +3,7 @@ import initialState from './initialState';
 
 export default function messagesReducer(state = initialState.messages, action) {
   switch (action.type) {
-    case types.CHAT_GET_MESSAGES_SUCCESS:
+    case types.CHAT_GET_LAST_MESSAGES_SUCCESS:
       return Object.assign({}, state, action.messages);
     case types.CHAT_SEND_MESSAGE_SUCCESS: {
       const newMessage = {};
