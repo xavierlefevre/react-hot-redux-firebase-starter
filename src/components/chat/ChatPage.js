@@ -1,12 +1,15 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-const AdminPage = () => {
+import checkAuth from '../requireAuth';
+
+const ChatPage = () => {
   return (
     <div>
-      <h1>You are in our chat</h1>
+      <h1>Chat</h1>
+      <Link to="/" activeClassName="active">Home</Link>
     </div>
   );
 };
 
-export default AdminPage;
+export default checkAuth(ChatPage);
