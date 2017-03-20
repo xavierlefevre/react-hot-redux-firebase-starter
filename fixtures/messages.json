@@ -1,6 +1,10 @@
 {
-  "messages": [
-    { "id": 1, "date": 2, "user": "Max", "content": "Hello guys, what are you up to today?" },
-    { "id": 2, "date": 2, "user": "John", "content": "Hi Max, nice to hear from you" }
-  ]
+  "messages": {
+    "1": {
+      "date": 1450039124267, "user": "Max", "content": "Hello guys, what are you up to today?"
+    },
+    "2": {
+      "date": 1490023145267, "user": "John", "content": "Hi Max, nice to hear from you"
+    }
+  }
 }

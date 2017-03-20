@@ -21,8 +21,10 @@ export default class MessagesThread extends Component {
     return (
       <div>
         {
-          this.state.messages.map((messages) => (
-            <p key={messages.id}>{messages.content}</p>
+          Object.keys(this.state.messages).map((messagesKey) => (
+            <p key={messagesKey}>
+              {this.state.messages[messagesKey].content}
+            </p>
           ))
         }
       </div>

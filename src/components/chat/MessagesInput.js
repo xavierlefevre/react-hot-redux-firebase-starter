@@ -1,6 +1,10 @@
 import React, { Component }  from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-export default class MessagesInput extends Component {
+import {sendMessage} from '../../actions/chatActions';
+
+class MessagesInput extends Component {
 
   constructor(props) {
     super(props);
@@ -17,6 +21,12 @@ export default class MessagesInput extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    this.props.actions.sendMessage({
+      id: 5,
+      content: this.state.value,
+      date: new Date().getTime(),
+      user: 'flo'
+    });
   }
 
   render() {
@@ -33,3 +43,19 @@ export default class MessagesInput extends Component {
     );
   }
 }
+
+MessagesInput.propTypes =  {
+  actions: React.PropTypes.object.isRequired
+};
+
+function mapStateToProps(state, ownProps) {
+  return {};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({sendMessage}, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessagesInput);
