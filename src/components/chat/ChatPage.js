@@ -1,8 +1,8 @@
 import React, { Component }  from 'react';
 import {Link} from 'react-router';
 
+import MessagesThread from './MessagesThread.js';
 import checkAuth from '../requireAuth';
-import firebaseApi from '../../api/firebase';
 
 class ChatPage extends Component {
 
@@ -13,12 +13,6 @@ class ChatPage extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentWillMount() {
-    firebaseApi.GetValueOnce('messages').then(value => {
-      console.log('value', value.val());
-    });
   }
 
   handleChange(event) {
@@ -33,6 +27,7 @@ class ChatPage extends Component {
     return (
       <div>
         <h1>Chat</h1>
+        <MessagesThread />
         <form onSubmit={this.handleSubmit}>
           <textarea
             value={this.state.value}
