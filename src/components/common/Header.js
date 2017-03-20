@@ -14,6 +14,8 @@ const Header = ({loading, signOut, auth, user}) => {
     <nav>
       <IndexLink to="/" activeClassName="active">Home</IndexLink>
       {" | "}
+      <Link to="/chat" activeClassName="active">Chat</Link>
+      {" | "}
       <Link to="/about" activeClassName="active">About</Link>
       {" | "}
       <Link to="/protected" activeClassName="active">Protected</Link>
