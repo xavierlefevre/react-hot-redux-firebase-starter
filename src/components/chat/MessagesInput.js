@@ -22,7 +22,7 @@ class MessagesInput extends Component {
       this.props.sendMessage({
         content: this.props.temporaryMessage,
         date: new Date().getTime(),
-        user: 'flo'
+        user: this.props.currentUserUID
       });
     }
   }
@@ -50,6 +50,7 @@ class MessagesInput extends Component {
 MessagesInput.propTypes =  {
   loading: PropTypes.bool,
   temporaryMessage: PropTypes.string,
+  currentUserUID: PropTypes.string,
   sendMessage: PropTypes.func.isRequired,
   storeTemporaryMessage: PropTypes.func.isRequired
 };
@@ -57,7 +58,8 @@ MessagesInput.propTypes =  {
 function mapStateToProps(state, ownProps) {
   return {
     loading: state.chat.loading,
-    temporaryMessage: state.chat.temporaryMessage
+    temporaryMessage: state.chat.temporaryMessage,
+    currentUserUID: state.auth.currentUserUID
   };
 }
 
