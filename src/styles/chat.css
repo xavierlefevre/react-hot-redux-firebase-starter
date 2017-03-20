@@ -1,0 +1,5 @@
+/* Styles */
+#textarea {
+  border: grey 1px solid;
+  resize: none;
+}

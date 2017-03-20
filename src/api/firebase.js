@@ -53,6 +53,13 @@ class FirebaseApi {
       .once('value');
   }
 
+  static GetValueOnce(path) {
+    return firebase
+      .database()
+      .ref(path)
+      .once('value');
+  }
+
   static GetChildAddedByKeyOnce(path, key) {
     return firebase
       .database()
