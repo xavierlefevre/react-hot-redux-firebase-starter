@@ -17,5 +17,9 @@ export default {
     initialized: false
   },
   ajaxCallsInProgress: 0,
-  messages: {}
+  chat: {
+    messages: {},
+    loading: null,
+    error: null
+  }
 };

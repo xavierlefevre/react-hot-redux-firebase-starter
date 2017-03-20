@@ -1,8 +1,8 @@
-import React, { Component }  from 'react';
+import React, { Component, PropTypes }  from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {sendMessage} from '../../actions/chatActions';
+import {sendMessageAsync} from '../../actions/chatActions';
 
 class MessagesInput extends Component {
 
@@ -21,40 +21,49 @@ class MessagesInput extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.actions.sendMessage({
-      id: 4,
-      content: this.state.value,
-      date: new Date().getTime(),
-      user: 'flo'
-    });
+    if (this.state.value) {
+      this.props.sendMessage({
+        content: this.state.value,
+        date: new Date().getTime(),
+        user: 'flo'
+      });
+    }
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <textarea
-          value={this.state.value}
-          onChange={this.handleChange}
-          placeholder="Type a message"
-          id="textarea"
-        />
-        <input type="submit" value="Submit" />
-      </form>
+      <div>
+        {
+          this.props.loading && <p>Loading</p>
+        }
+        <form onSubmit={this.handleSubmit}>
+          <textarea
+            value={this.state.value}
+            onChange={this.handleChange}
+            placeholder="Type a message"
+            id="textarea"
+          />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
     );
   }
 }
 
 MessagesInput.propTypes =  {
-  actions: React.PropTypes.object.isRequired
+  sendMessage: PropTypes.func.isRequired,
+  loading: PropTypes.bool
 };
 
 function mapStateToProps(state, ownProps) {
-  return {};
+  return {
+    loading: state.chat.loading
+  };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({sendMessage}, dispatch)
+    sendMessage: bindActionCreators(sendMessageAsync, dispatch)
   };
 }
 

@@ -31,7 +31,7 @@ MessagesThread.propTypes =  {
 
 function mapStateToProps(state, ownProps) {
   return {
-    messages: state.messages
+    messages: state.chat.messages
   };
 }
 

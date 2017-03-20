@@ -2,8 +2,10 @@ import * as firebase from 'firebase/firebase-browser';
 
 import * as types from './actionTypes';
 
-export function sendMessage(messageContent) {
+export function sendMessageAsync(messageContent) {
   return (dispatch) => {
+    dispatch(sendMessage());
+
     const messagesRef = firebase.database().ref('messages');
     const newMessage = messagesRef.push();
 
@@ -16,6 +18,7 @@ export function sendMessage(messageContent) {
     });
   };
 }
+export const sendMessage = () => ({ type: types.CHAT_SEND_MESSAGE });
 export const sendMessageSuccess = (messageKey, messageContent) => (
   {type: types.CHAT_SEND_MESSAGE_SUCCESS, messageKey, messageContent}
 );
