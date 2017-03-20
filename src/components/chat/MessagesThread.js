@@ -1,29 +1,21 @@
-import React, { Component }  from 'react';
+import React, { Component, PropTypes }  from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import firebaseApi from '../../api/firebase';
+import {getMessages} from '../../actions/chatActions';
 
-export default class MessagesThread extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      messages: []
-    };
-  }
-
+class MessagesThread extends Component {
   componentWillMount() {
-    firebaseApi.GetValueOnce('messages').then(value => {
-      this.setState({messages: value.val()});
-    });
+    this.props.actions.getMessages();
   }
 
   render() {
     return (
       <div>
         {
-          Object.keys(this.state.messages).map((messagesKey) => (
+          Object.keys(this.props.messages).map((messagesKey) => (
             <p key={messagesKey}>
-              {this.state.messages[messagesKey].content}
+              {this.props.messages[messagesKey].content}
             </p>
           ))
         }
@@ -31,3 +23,22 @@ export default class MessagesThread extends Component {
     );
   }
 }
+
+MessagesThread.propTypes =  {
+  messages: PropTypes.object,
+  actions: React.PropTypes.object.isRequired
+};
+
+function mapStateToProps(state, ownProps) {
+  return {
+    messages: state.messages
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({getMessages}, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessagesThread);
