@@ -18,6 +18,7 @@ export default {
   },
   ajaxCallsInProgress: 0,
   chat: {
+    temporaryMessage: '',
     messages: {},
     loading: null,
     error: null

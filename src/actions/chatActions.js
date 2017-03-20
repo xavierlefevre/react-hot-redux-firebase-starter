@@ -2,6 +2,8 @@ import * as firebase from 'firebase/firebase-browser';
 
 import * as types from './actionTypes';
 
+export const storeTemporaryMessage = message => ({ type: types.CHAT_STORE_TEMPORARY_MESSAGE, message });
+
 export function sendMessageAsync(messageContent) {
   return (dispatch) => {
     dispatch(sendMessage());

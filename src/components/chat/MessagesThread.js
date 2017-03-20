@@ -6,7 +6,7 @@ import {getLastMessages} from '../../actions/chatActions';
 
 class MessagesThread extends Component {
   componentWillMount() {
-    this.props.actions.getLastMessages();
+    this.props.getLastMessages();
   }
 
   render() {
@@ -26,7 +26,7 @@ class MessagesThread extends Component {
 
 MessagesThread.propTypes =  {
   messages: PropTypes.object,
-  actions: React.PropTypes.object.isRequired
+  getLastMessages: React.PropTypes.func.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
@@ -37,7 +37,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({getLastMessages}, dispatch)
+    getLastMessages: bindActionCreators(getLastMessages, dispatch)
   };
 }
 

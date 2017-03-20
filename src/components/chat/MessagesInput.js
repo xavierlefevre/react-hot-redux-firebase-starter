@@ -2,28 +2,25 @@ import React, { Component, PropTypes }  from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {sendMessageAsync} from '../../actions/chatActions';
+import {sendMessageAsync, storeTemporaryMessage} from '../../actions/chatActions';
 
 class MessagesInput extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      value: ''
-    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.props.storeTemporaryMessage(event.target.value);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    if (this.state.value) {
+    if (this.props.temporaryMessage) {
       this.props.sendMessage({
-        content: this.state.value,
+        content: this.props.temporaryMessage,
         date: new Date().getTime(),
         user: 'flo'
       });
@@ -38,7 +35,7 @@ class MessagesInput extends Component {
         }
         <form onSubmit={this.handleSubmit}>
           <textarea
-            value={this.state.value}
+            value={this.props.temporaryMessage}
             onChange={this.handleChange}
             placeholder="Type a message"
             id="textarea"
@@ -51,19 +48,23 @@ class MessagesInput extends Component {
 }
 
 MessagesInput.propTypes =  {
+  loading: PropTypes.bool,
+  temporaryMessage: PropTypes.string,
   sendMessage: PropTypes.func.isRequired,
-  loading: PropTypes.bool
+  storeTemporaryMessage: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
   return {
-    loading: state.chat.loading
+    loading: state.chat.loading,
+    temporaryMessage: state.chat.temporaryMessage
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    sendMessage: bindActionCreators(sendMessageAsync, dispatch)
+    sendMessage: bindActionCreators(sendMessageAsync, dispatch),
+    storeTemporaryMessage: bindActionCreators(storeTemporaryMessage, dispatch)
   };
 }
 
