@@ -22,7 +22,7 @@ class MessagesInput extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.actions.sendMessage({
-      id: 5,
+      id: 4,
       content: this.state.value,
       date: new Date().getTime(),
       user: 'flo'
