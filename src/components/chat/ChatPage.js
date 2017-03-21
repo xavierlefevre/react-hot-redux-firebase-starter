@@ -5,6 +5,7 @@ import MessagesThread from './MessagesThread.js';
 import MessagesInput from './MessagesInput.js';
 import RoomSelection from './RoomSelection.js';
 import RoomCreation from './RoomCreation.js';
+import OrSeparator from './OrSeparator.js';
 
 class ChatPage extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class ChatPage extends Component {
         <h1>Chat</h1>
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           <RoomSelection />
-          <p>OR</p>
+          <OrSeparator />
           <RoomCreation />
         </div>
       </div>
