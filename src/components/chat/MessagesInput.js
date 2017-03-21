@@ -10,6 +10,7 @@ class MessagesInput extends Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.checkForEnter = this.checkForEnter.bind(this);
   }
 
   handleChange(event) {
@@ -24,6 +25,19 @@ class MessagesInput extends Component {
         timestamp: new Date().getTime(),
         userID: this.props.currentUserUID
       }, this.props.currentRoom);
+    }
+  }
+
+  checkForEnter(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      if (this.props.temporaryMessage) {
+        this.props.sendMessage({
+          content: this.props.temporaryMessage,
+          timestamp: new Date().getTime(),
+          userID: this.props.currentUserUID
+        }, this.props.currentRoom);
+      }
     }
   }
 
@@ -42,7 +56,8 @@ class MessagesInput extends Component {
           onChange={this.handleChange}
           placeholder="Type a message"
           id="textarea"
-          style={{ flex: 9 }}
+          style={{ flex: 9, outline: 'none' }}
+          onKeyDown={this.checkForEnter}
         />
         <input type="submit" value="Submit" style={{ flex: 1 }} />
       </form>
