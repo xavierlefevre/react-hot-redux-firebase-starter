@@ -27,18 +27,17 @@ class RoomCreation extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            value={this.props.temporaryRoom}
-            onChange={this.handleChange}
-            placeholder="Type a message"
-            id="input"
-          />
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
+      <form  style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }} onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          value={this.props.temporaryRoom}
+          onChange={this.handleChange}
+          placeholder="New room"
+          id="input"
+          style={{ width: '100px' }}
+        />
+        <input type="submit" value="Create" />
+      </form>
     );
   }
 }

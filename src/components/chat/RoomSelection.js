@@ -35,7 +35,8 @@ class RoomSelection extends Component {
                 height: 40,
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                cursor: 'pointer'
               }}
             >
               <p style={{ margin: 0 }}>{this.props.chatRooms[roomKey].name}</p>

@@ -18,7 +18,7 @@ class ChatPage extends Component {
       ? (
       <div>
         <h1>Chat</h1>
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', marginTop: '30px' }}>
           <RoomSelection />
           <OrSeparator />
           <RoomCreation />
