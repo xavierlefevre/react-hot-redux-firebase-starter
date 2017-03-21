@@ -1,18 +1,10 @@
 import React, { Component, PropTypes }  from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as firebase from 'firebase/firebase-browser';
 
 import {getChatRoomsSuccess, accessRoom} from '../../actions/chatActions';
 
 class RoomSelection extends Component {
-  componentWillMount() {
-    const chatRoomsRef = firebase.database().ref('chatRooms');
-    chatRoomsRef.on('child_added', data => {
-      this.props.getChatRoomsSuccess(data.key, data.val());
-    });
-  }
-
   accessRoom(roomKey) {
     this.props.accessRoom(roomKey);
   }
@@ -55,7 +47,6 @@ class RoomSelection extends Component {
 
 RoomSelection.propTypes =  {
   chatRooms: PropTypes.object,
-  getChatRoomsSuccess: PropTypes.func,
   accessRoom: PropTypes.func
 };
 
@@ -67,7 +58,6 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getChatRoomsSuccess: bindActionCreators(getChatRoomsSuccess, dispatch),
     accessRoom: bindActionCreators(accessRoom, dispatch)
   };
 }

@@ -21,9 +21,9 @@ class MessagesInput extends Component {
     if (this.props.temporaryMessage) {
       this.props.sendMessage({
         content: this.props.temporaryMessage,
-        date: new Date().getTime(),
-        user: this.props.currentUserUID
-      });
+        timestamp: new Date().getTime(),
+        userID: this.props.currentUserUID
+      }, this.props.currentRoom);
     }
   }
 

@@ -9,7 +9,6 @@ export const storeTemporaryRoom = title => ({ type: types.CHAT_STORE_TEMPORARY_R
 
 export function createRoomAsync(content) {
   return (dispatch) => {
-
     const chatRoomsRef = firebase.database().ref('chatRooms');
     const newChatRoom = chatRoomsRef.push();
 
@@ -26,27 +25,18 @@ export const accessRoom = key => ({ type: types.CHAT_ACCESS_ROOM, key });
 // Chat messages
 export const storeTemporaryMessage = message => ({ type: types.CHAT_STORE_TEMPORARY_MESSAGE, message });
 
-export function sendMessageAsync(messageContent, roomKey) {
+export function sendMessageAsync(content, roomKey) {
   return (dispatch) => {
-    dispatch(sendMessage());
-
     const messagesRef = firebase.database().ref('chatRooms/' + roomKey + '/messages');
     const newMessage = messagesRef.push();
 
-    newMessage.set(messageContent)
+    newMessage.set(content)
     .then(result => {
-      dispatch(sendMessageSuccess(newMessage.key, messageContent));
-    })
-    .catch(error => {
-      dispatch(sendMessageError(error));
+      dispatch(sendMessageSuccess());
     });
   };
 }
-export const sendMessage = () => ({ type: types.CHAT_SEND_MESSAGE });
-export const sendMessageSuccess = (messageKey, messageContent) => (
-  {type: types.CHAT_SEND_MESSAGE_SUCCESS, messageKey, messageContent}
-);
-export const sendMessageError = error => ({ type: types.CHAT_SEND_MESSAGE_ERROR, error });
+export const sendMessageSuccess = () => ({type: types.CHAT_SEND_MESSAGE_SUCCESS});
 
 export function getLastMessages() {
   return (dispatch) => {
