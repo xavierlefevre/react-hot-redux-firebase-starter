@@ -33,7 +33,6 @@ class ChatPage extends Component {
       </div>
       ) : (
       <div>
-        <h1>Chat - Discuss</h1>
         <MessagesThread />
         <MessagesInput />
       </div>

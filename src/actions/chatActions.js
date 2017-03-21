@@ -23,6 +23,8 @@ export const createRoomSuccess = () => ({ type: types.CHAT_CREATE_ROOM_SUCCESS }
 export const accessRoom = key => ({ type: types.CHAT_ACCESS_ROOM, key });
 
 // Chat messages
+export const getMessageSuccess = (key, content) => ({ type: types.CHAT_GET_MESSAGE_SUCCESS, key, content });
+
 export const storeTemporaryMessage = message => ({ type: types.CHAT_STORE_TEMPORARY_MESSAGE, message });
 
 export function sendMessageAsync(content, roomKey) {
@@ -38,24 +40,7 @@ export function sendMessageAsync(content, roomKey) {
 }
 export const sendMessageSuccess = () => ({type: types.CHAT_SEND_MESSAGE_SUCCESS});
 
-export function getLastMessages() {
-  return (dispatch) => {
-    firebase
-    .database()
-    .ref('messages')
-    .limitToLast(10)
-    .once('value')
-    .then(result => {
-      dispatch(getLastMessagesSuccess(result.val()));
-    })
-    .catch(error => {
-      dispatch(getLastMessagesSuccess(error));
-    });
-  };
-}
-export const getMessageSuccess = (key, content) => ({ type: types.CHAT_GET_MESSAGE_SUCCESS, key, content });
-export const getLastMessagesError = error => ({ type: types.CHAT_GET_LAST_MESSAGES_ERROR, error });
-
+// Chat users
 export const getUsersSuccess = (userKey, userContent) => (
   {type: types.CHAT_GET_USERS_SUCCESS, userKey, userContent}
 );
