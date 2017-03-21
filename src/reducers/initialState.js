@@ -17,5 +17,8 @@ export default {
     initialized: false
   },
   ajaxCallsInProgress: 0,
-  chat: {}
+  chat: {
+    rooms: {},
+    temporaryRoom: ''
+  }
 };

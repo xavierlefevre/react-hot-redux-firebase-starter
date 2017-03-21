@@ -2,10 +2,26 @@ import * as firebase from 'firebase/firebase-browser';
 
 import * as types from './actionTypes';
 
-export const getChatRoomsSuccess = (key, content) => (
-  {type: types.CHAT_GET_ROOMS_SUCCESS, key, content}
-);
+// Chat rooms
+export const getChatRoomsSuccess = (key, content) => ({type: types.CHAT_GET_ROOMS_SUCCESS, key, content});
 
+export const storeTemporaryRoom = title => ({ type: types.CHAT_STORE_TEMPORARY_ROOM, title });
+
+export function createRoomAsync(content) {
+  return (dispatch) => {
+
+    const chatRoomsRef = firebase.database().ref('chatRooms');
+    const newChatRoom = chatRoomsRef.push();
+
+    newChatRoom.set(content)
+    .then(result => {
+      dispatch(createRoomSuccess());
+    });
+  };
+}
+export const createRoomSuccess = () => ({ type: types.CHAT_CREATE_ROOM_SUCCESS });
+
+// Chat messages
 export const storeTemporaryMessage = message => ({ type: types.CHAT_STORE_TEMPORARY_MESSAGE, message });
 
 export function sendMessageAsync(messageContent) {

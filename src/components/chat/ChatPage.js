@@ -4,6 +4,7 @@ import checkAuth from '../requireAuth';
 import MessagesThread from './MessagesThread.js';
 import MessagesInput from './MessagesInput.js';
 import RoomSelection from './RoomSelection.js';
+import RoomCreation from './RoomCreation.js';
 
 class ChatPage extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class ChatPage extends Component {
       <div>
         <h1>Chat - Select a Room</h1>
         <RoomSelection />
+        <RoomCreation />
       </div>
       ) : (
       <div>

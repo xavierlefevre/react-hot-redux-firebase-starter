@@ -34,7 +34,7 @@ RoomSelection.propTypes =  {
 
 function mapStateToProps(state, ownProps) {
   return {
-    chatRooms: state.chat
+    chatRooms: state.chat.rooms
   };
 }
 
