@@ -18,6 +18,15 @@ export default function chatReducer(state = initialState.chat, action) {
         {messages: Object.assign({}, state.messages, newMessage), loading: false, temporaryMessage: ''}
       );
     }
+    case types.CHAT_GET_USERS_SUCCESS: {
+      const newUser = {};
+      newUser[action.userKey] = action.userContent;
+      return Object.assign(
+        {},
+        state,
+        {users: Object.assign({}, state.users, newUser)}
+      );
+    }
     default:
       return state;
   }

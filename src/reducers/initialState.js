@@ -23,5 +23,6 @@ export default {
     loading: null,
     error: null,
     firstBatchLoaded: false,
+    users: {}
   }
 };

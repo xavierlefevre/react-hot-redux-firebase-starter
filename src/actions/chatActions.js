@@ -43,3 +43,7 @@ export function getLastMessages() {
 }
 export const getLastMessagesSuccess = (messages) => ({ type: types.CHAT_GET_LAST_MESSAGES_SUCCESS, messages });
 export const getLastMessagesError = error => ({ type: types.CHAT_GET_LAST_MESSAGES_ERROR, error });
+
+export const getUsersSuccess = (userKey, userContent) => (
+  {type: types.CHAT_GET_USERS_SUCCESS, userKey, userContent}
+);

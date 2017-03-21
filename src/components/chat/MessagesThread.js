@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as firebase from 'firebase/firebase-browser';
 
-import {getLastMessages, sendMessageSuccess} from '../../actions/chatActions';
+import {getLastMessages, sendMessageSuccess, getUsersSuccess} from '../../actions/chatActions';
 
 class MessagesThread extends Component {
   componentWillMount() {
@@ -13,6 +13,11 @@ class MessagesThread extends Component {
       this.props.sendMessageSuccess(data.key, data.val());
     });
 
+    const usersRef = firebase.database().ref('users');
+    usersRef.on('child_added', data => {
+      this.props.getUsersSuccess(data.key, data.val());
+    });
+
     this.props.getLastMessages();
   }
 
@@ -20,9 +25,9 @@ class MessagesThread extends Component {
     return (
       <div>
         {
-          Object.keys(this.props.messages).map((messagesKey) => (
+          Object.keys(this.props.users).length > 0 && Object.keys(this.props.messages).map((messagesKey) => (
             <p key={messagesKey}>
-              {this.props.messages[messagesKey].user} - {this.props.messages[messagesKey].content}
+              {this.props.users[this.props.messages[messagesKey].user].email} - {this.props.messages[messagesKey].content}
             </p>
           ))
         }
@@ -33,14 +38,17 @@ class MessagesThread extends Component {
 
 MessagesThread.propTypes =  {
   messages: PropTypes.object,
+  users: PropTypes.object,
   firstBatchLoaded: PropTypes.bool,
   getLastMessages: React.PropTypes.func.isRequired,
-  sendMessageSuccess: React.PropTypes.func
+  sendMessageSuccess: React.PropTypes.func,
+  getUsersSuccess: React.PropTypes.func
 };
 
 function mapStateToProps(state, ownProps) {
   return {
     messages: state.chat.messages,
+    users: state.chat.users,
     firstBatchLoaded: state.chat.firstBatchLoaded
   };
 }
@@ -48,7 +56,8 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
   return {
     getLastMessages: bindActionCreators(getLastMessages, dispatch),
-    sendMessageSuccess: bindActionCreators(sendMessageSuccess, dispatch)
+    sendMessageSuccess: bindActionCreators(sendMessageSuccess, dispatch),
+    getUsersSuccess: bindActionCreators(getUsersSuccess, dispatch)
   };
 }
 
