@@ -16,9 +16,12 @@ class ChatPage extends Component {
     return this.state.showRooms
       ? (
       <div>
-        <h1>Chat - Select a Room</h1>
-        <RoomSelection />
-        <RoomCreation />
+        <h1>Chat</h1>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <RoomSelection />
+          <p>OR</p>
+          <RoomCreation />
+        </div>
       </div>
       ) : (
       <div>

@@ -14,12 +14,32 @@ class RoomSelection extends Component {
   }
 
   render() {
-    console.log('dadaz', this.props.chatRooms);
     return (
-      <div>
+      <div
+        style={{
+          width: 120,
+          backgroundColor: 'rgb(250, 250, 250)',
+          borderColor: 'rgb(160, 160, 160)',
+          borderWidth: 1,
+          borderStyle: 'solid'
+        }}
+      >
         {
           Object.keys(this.props.chatRooms).map((roomKey) => (
-            <p key={roomKey}>{this.props.chatRooms[roomKey].name}</p>
+            <div
+              key={roomKey}
+              style={{
+                width: '100%',
+                textAlign: 'center',
+                margin: 0,
+                height: 40,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center'
+              }}
+            >
+              <p style={{ margin: 0 }}>{this.props.chatRooms[roomKey].name}</p>
+            </div>
           ))
         }
       </div>
