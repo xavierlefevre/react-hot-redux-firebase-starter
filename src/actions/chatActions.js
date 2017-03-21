@@ -21,6 +21,8 @@ export function createRoomAsync(content) {
 }
 export const createRoomSuccess = () => ({ type: types.CHAT_CREATE_ROOM_SUCCESS });
 
+export const accessRoom = key => ({ type: types.CHAT_ACCESS_ROOM, key });
+
 // Chat messages
 export const storeTemporaryMessage = message => ({ type: types.CHAT_STORE_TEMPORARY_MESSAGE, message });
 

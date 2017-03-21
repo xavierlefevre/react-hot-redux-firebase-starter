@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as firebase from 'firebase/firebase-browser';
 
-import {getChatRoomsSuccess} from '../../actions/chatActions';
+import {getChatRoomsSuccess, accessRoom} from '../../actions/chatActions';
 
 class RoomSelection extends Component {
   componentWillMount() {
@@ -11,6 +11,10 @@ class RoomSelection extends Component {
     chatRoomsRef.on('child_added', data => {
       this.props.getChatRoomsSuccess(data.key, data.val());
     });
+  }
+
+  accessRoom(roomKey) {
+    this.props.accessRoom(roomKey);
   }
 
   render() {
@@ -38,6 +42,7 @@ class RoomSelection extends Component {
                 justifyContent: 'center',
                 cursor: 'pointer'
               }}
+              onClick={() => this.accessRoom(roomKey)}
             >
               <p style={{ margin: 0 }}>{this.props.chatRooms[roomKey].name}</p>
             </div>
@@ -50,7 +55,8 @@ class RoomSelection extends Component {
 
 RoomSelection.propTypes =  {
   chatRooms: PropTypes.object,
-  getChatRoomsSuccess: PropTypes.func
+  getChatRoomsSuccess: PropTypes.func,
+  accessRoom: PropTypes.func
 };
 
 function mapStateToProps(state, ownProps) {
@@ -61,7 +67,8 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getChatRoomsSuccess: bindActionCreators(getChatRoomsSuccess, dispatch)
+    getChatRoomsSuccess: bindActionCreators(getChatRoomsSuccess, dispatch),
+    accessRoom: bindActionCreators(accessRoom, dispatch)
   };
 }
 

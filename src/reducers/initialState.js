@@ -19,6 +19,7 @@ export default {
   ajaxCallsInProgress: 0,
   chat: {
     rooms: {},
-    temporaryRoom: ''
+    temporaryRoom: '',
+    currentRoom: null
   }
 };

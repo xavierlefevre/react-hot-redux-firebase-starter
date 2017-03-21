@@ -17,6 +17,8 @@ export default function chatReducer(state = initialState.chat, action) {
       return Object.assign({}, state, {temporaryRoom: action.title});
     case types.CHAT_CREATE_ROOM_SUCCESS:
       return Object.assign({}, state, {temporaryRoom: ''});
+    case types.CHAT_ACCESS_ROOM:
+      return Object.assign({}, state, {currentRoom: action.key});
     // Chat messages
     case types.CHAT_STORE_TEMPORARY_MESSAGE:
       return Object.assign({}, state, {temporaryMessage: action.message});

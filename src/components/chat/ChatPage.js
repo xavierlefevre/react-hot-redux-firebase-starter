@@ -1,4 +1,6 @@
-import React, { Component }  from 'react';
+import React, { Component, PropTypes }  from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import checkAuth from '../requireAuth';
 import MessagesThread from './MessagesThread.js';
@@ -8,13 +10,8 @@ import RoomCreation from './RoomCreation.js';
 import OrSeparator from './OrSeparator.js';
 
 class ChatPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { showRooms: true };
-  }
-
   render() {
-    return this.state.showRooms
+    return !this.props.currentRoom
       ? (
       <div>
         <h1>Chat</h1>
@@ -27,11 +24,19 @@ class ChatPage extends Component {
       ) : (
       <div>
         <h1>Chat - Discuss</h1>
-        <MessagesThread />
-        <MessagesInput />
       </div>
     );
   }
 }
 
-export default checkAuth(ChatPage);
+ChatPage.propTypes =  {
+  currentRoom: PropTypes.string
+};
+
+function mapStateToProps(state) {
+  return {
+    currentRoom: state.chat.currentRoom
+  };
+}
+
+export default connect(mapStateToProps)(checkAuth(ChatPage));
