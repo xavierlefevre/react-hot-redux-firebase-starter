@@ -20,6 +20,7 @@ export default {
   chat: {
     rooms: {},
     temporaryRoom: '',
-    currentRoom: null
+    currentRoom: null,
+    temporaryMessage: ''
   }
 };

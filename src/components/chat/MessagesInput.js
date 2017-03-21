@@ -45,7 +45,7 @@ class MessagesInput extends Component {
 }
 
 MessagesInput.propTypes =  {
-  loading: PropTypes.bool,
+  currentRoom: PropTypes.string,
   temporaryMessage: PropTypes.string,
   currentUserUID: PropTypes.string,
   sendMessage: PropTypes.func.isRequired,
@@ -54,6 +54,7 @@ MessagesInput.propTypes =  {
 
 function mapStateToProps(state, ownProps) {
   return {
+    currentRoom: state.chat.currentRoom,
     temporaryMessage: state.chat.temporaryMessage,
     currentUserUID: state.auth.currentUserUID
   };

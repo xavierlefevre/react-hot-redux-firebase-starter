@@ -26,11 +26,11 @@ export const accessRoom = key => ({ type: types.CHAT_ACCESS_ROOM, key });
 // Chat messages
 export const storeTemporaryMessage = message => ({ type: types.CHAT_STORE_TEMPORARY_MESSAGE, message });
 
-export function sendMessageAsync(messageContent) {
+export function sendMessageAsync(messageContent, roomKey) {
   return (dispatch) => {
     dispatch(sendMessage());
 
-    const messagesRef = firebase.database().ref('messages');
+    const messagesRef = firebase.database().ref('chatRooms/' + roomKey + '/messages');
     const newMessage = messagesRef.push();
 
     newMessage.set(messageContent)

@@ -1,11 +1,19 @@
 import React, { Component, PropTypes }  from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
+import {accessRoom} from '../../actions/chatActions';
 
 class MessagesThread extends Component {
   render() {
     const messages = this.props.rooms[this.props.currentRoom].messages;
     return (
       <div>
+        <div
+          onClick={() => this.props.accessRoom()}
+        >
+          <p>Back</p>
+        </div>
         {
           messages
           && Object.keys(messages).length > 0
@@ -24,7 +32,8 @@ class MessagesThread extends Component {
 MessagesThread.propTypes =  {
   currentRoom: PropTypes.string,
   rooms: PropTypes.object,
-  users: PropTypes.object
+  users: PropTypes.object,
+  accessRoom: PropTypes.func
 };
 
 function mapStateToProps(state, ownProps) {
@@ -35,4 +44,10 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(MessagesThread);
+function mapDispatchToProps(dispatch) {
+  return {
+    accessRoom: bindActionCreators(accessRoom, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessagesThread);
