@@ -20,8 +20,7 @@ class RoomCreation extends Component {
     event.preventDefault();
     if (this.props.temporaryRoom) {
       this.props.createRoom({
-        name: this.props.temporaryRoom,
-        messages: {}
+        name: this.props.temporaryRoom
       });
     }
   }

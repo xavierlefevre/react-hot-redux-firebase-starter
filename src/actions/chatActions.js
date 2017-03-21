@@ -53,7 +53,7 @@ export function getLastMessages() {
     });
   };
 }
-export const getLastMessagesSuccess = (messages) => ({ type: types.CHAT_GET_LAST_MESSAGES_SUCCESS, messages });
+export const getMessageSuccess = (key, content) => ({ type: types.CHAT_GET_MESSAGE_SUCCESS, key, content });
 export const getLastMessagesError = error => ({ type: types.CHAT_GET_LAST_MESSAGES_ERROR, error });
 
 export const getUsersSuccess = (userKey, userContent) => (

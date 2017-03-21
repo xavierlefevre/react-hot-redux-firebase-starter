@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as firebase from 'firebase/firebase-browser';
 
 import checkAuth from '../requireAuth';
-import {getUsersSuccess, getChatRoomsSuccess} from '../../actions/chatActions';
+import {getUsersSuccess} from '../../actions/chatActions';
 
 import MessagesThread from './MessagesThread.js';
 import MessagesInput from './MessagesInput.js';
@@ -17,11 +17,6 @@ class ChatPage extends Component {
     const usersRef = firebase.database().ref('users');
     usersRef.on('child_added', data => {
       this.props.getUsersSuccess(data.key, data.val());
-    });
-
-    const chatRoomsRef = firebase.database().ref('chatRooms');
-    chatRoomsRef.on('child_added', data => {
-      this.props.getChatRoomsSuccess(data.key, data.val());
     });
   }
 
@@ -60,8 +55,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getUsersSuccess: bindActionCreators(getUsersSuccess, dispatch),
-    getChatRoomsSuccess: bindActionCreators(getChatRoomsSuccess, dispatch)
+    getUsersSuccess: bindActionCreators(getUsersSuccess, dispatch)
   };
 }
 

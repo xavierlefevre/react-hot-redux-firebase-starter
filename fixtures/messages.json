@@ -11,49 +11,33 @@
   },
   "chatRooms": {
     "-KfmJ3rlNwLtNha3hfgO": {
-      "name": "discussion sur la vie",
-      "activeUsers": {
-        "user1": {
-          "uid": "dVvuvXoSdNMU2sQ1gD56KrWQ33V2"
-        },
-        "user2": {
-          "uid": "JsvRahjDooORoa0rTZ5jjSseYFJ2"
-        }
-      },
-      "messages": {
-        "-KfhT0gE-cVUuyJ2s6QN": {
-          "timestamp": 1450039124267,
-          "userID": "dVvuvXoSdNMU2sQ1gD56KrWQ33V2",
-          "content": "Hello guys, what are you up to today?"
-        },
-        "-Kfht6gE-cVUsyJ5s6QN": {
-          "timestamp": 1490023145267,
-          "userID": "JsvRahjDooORoa0rTZ5jjSseYFJ2",
-          "content": "Hi Xav, nice to hear from you"
-        }
-      }
+      "name": "Faune"
     },
     "-KfmJTeaXcstloLVJdLr": {
-      "name": "discussion sur la mort",
-      "activeUsers": {
-        "user1": {
-          "uid": "dVvuvXoSdNMU2sQ1gD56KrWQ33V2"
-        },
-        "user2": {
-          "uid": "JsvRahjDooORoa0rTZ5jjSseYFJ2"
-        }
+      "name": "Flore"
+    }
+  },
+  "activeUsers": {
+    "-KfmJ3rlNwLtNha3hfgO": {
+      "user1": {
+        "uid": "dVvuvXoSdNMU2sQ1gD56KrWQ33V2"
       },
-      "messages": {
-        "-KfhT0gE-cVUuyJ2s6QN": {
-          "timestamp": 1450039124267,
-          "userID": "dVvuvXoSdNMU2sQ1gD56KrWQ33V2",
-          "content": "Hello guys, what are you up to today?"
-        },
-        "-Kfht6gE-cVUsyJ5s6QN": {
-          "timestamp": 1490023145267,
-          "userID": "JsvRahjDooORoa0rTZ5jjSseYFJ2",
-          "content": "Hi Xav, nice to hear from you"
-        }
+      "user2": {
+        "uid": "JsvRahjDooORoa0rTZ5jjSseYFJ2"
+      }
+    }
+  },
+  "messages": {
+    "-KfmJ3rlNwLtNha3hfgO": {
+      "-KfhT0gE-cVUuyJ2s6QN": {
+        "timestamp": 1450039124267,
+        "userID": "dVvuvXoSdNMU2sQ1gD56KrWQ33V2",
+        "content": "Hello guys, what are you up to today?"
+      },
+      "-Kfht6gE-cVUsyJ5s6QN": {
+        "timestamp": 1490023145267,
+        "userID": "JsvRahjDooORoa0rTZ5jjSseYFJ2",
+        "content": "Hi Xav, nice to hear from you"
       }
     }
   }
