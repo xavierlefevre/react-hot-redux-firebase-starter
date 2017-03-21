@@ -17,12 +17,5 @@ export default {
     initialized: false
   },
   ajaxCallsInProgress: 0,
-  chat: {
-    temporaryMessage: '',
-    messages: {},
-    loading: null,
-    error: null,
-    firstBatchLoaded: false,
-    users: {}
-  }
+  chat: {}
 };

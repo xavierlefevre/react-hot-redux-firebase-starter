@@ -3,6 +3,15 @@ import initialState from './initialState';
 
 export default function chatReducer(state = initialState.chat, action) {
   switch (action.type) {
+    case types.CHAT_GET_ROOMS_SUCCESS: {
+      const newRoom = {};
+      newRoom[action.key] = action.content;
+      return Object.assign(
+        {},
+        state,
+        newRoom
+      );
+    }
     case types.CHAT_STORE_TEMPORARY_MESSAGE:
       return Object.assign({}, state, {temporaryMessage: action.message});
     case types.CHAT_GET_LAST_MESSAGES_SUCCESS:

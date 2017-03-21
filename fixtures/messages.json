@@ -16,5 +16,53 @@
       "email": "luma.gonzales@lol.tech",
       "uid": "JsvRahjDooORoa0rTZ5jjSseYFJ2"
     }
+  },
+  "chatRooms": {
+    "discussion1": {
+      "name": "discussion 1",
+      "activeUsers": {
+        "user1": {
+          "uid": "dVvuvXoSdNMU2sQ1gD56KrWQ33V2"
+        },
+        "user2": {
+          "uid": "JsvRahjDooORoa0rTZ5jjSseYFJ2"
+        }
+      },
+      "messages": {
+        "-KfhT0gE-cVUuyJ2s6QN": {
+          "timestamp": 1450039124267,
+          "userID": "dVvuvXoSdNMU2sQ1gD56KrWQ33V2",
+          "content": "Hello guys, what are you up to today?"
+        },
+        "-Kfht6gE-cVUsyJ5s6QN": {
+          "timestamp": 1490023145267,
+          "userID": "JsvRahjDooORoa0rTZ5jjSseYFJ2",
+          "content": "Hi Xav, nice to hear from you"
+        }
+      }
+    },
+    "discussion2": {
+      "name": "discussion 2",
+      "activeUsers": {
+        "user1": {
+          "uid": "dVvuvXoSdNMU2sQ1gD56KrWQ33V2"
+        },
+        "user2": {
+          "uid": "JsvRahjDooORoa0rTZ5jjSseYFJ2"
+        }
+      },
+      "messages": {
+        "-KfhT0gE-cVUuyJ2s6QN": {
+          "timestamp": 1450039124267,
+          "userID": "dVvuvXoSdNMU2sQ1gD56KrWQ33V2",
+          "content": "Hello guys, what are you up to today?"
+        },
+        "-Kfht6gE-cVUsyJ5s6QN": {
+          "timestamp": 1490023145267,
+          "userID": "JsvRahjDooORoa0rTZ5jjSseYFJ2",
+          "content": "Hi Xav, nice to hear from you"
+        }
+      }
+    }
   }
 }
