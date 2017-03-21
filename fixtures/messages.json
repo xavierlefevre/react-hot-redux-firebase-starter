@@ -1,12 +1,4 @@
 {
-  "messages": {
-    "-KfhT0gE-cVUuyJ2s6QN": {
-      "date": 1450039124267, "user": "dVvuvXoSdNMU2sQ1gD56KrWQ33V2", "content": "Hello guys, what are you up to today?"
-    },
-    "-Kfht6gE-cVUsyJ5s6QN": {
-      "date": 1490023145267, "user": "JsvRahjDooORoa0rTZ5jjSseYFJ2", "content": "Hi Xav, nice to hear from you"
-    }
-  },
   "users": {
     "dVvuvXoSdNMU2sQ1gD56KrWQ33V2": {
       "email": "xavierl@bam.tech",
@@ -18,8 +10,8 @@
     }
   },
   "chatRooms": {
-    "discussion1": {
-      "name": "discussion 1",
+    "-KfmJ3rlNwLtNha3hfgO": {
+      "name": "discussion sur la vie",
       "activeUsers": {
         "user1": {
           "uid": "dVvuvXoSdNMU2sQ1gD56KrWQ33V2"
@@ -41,8 +33,8 @@
         }
       }
     },
-    "discussion2": {
-      "name": "discussion 2",
+    "-KfmJTeaXcstloLVJdLr": {
+      "name": "discussion sur la mort",
       "activeUsers": {
         "user1": {
           "uid": "dVvuvXoSdNMU2sQ1gD56KrWQ33V2"

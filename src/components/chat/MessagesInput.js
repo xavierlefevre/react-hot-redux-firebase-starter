@@ -30,9 +30,6 @@ class MessagesInput extends Component {
   render() {
     return (
       <div>
-        {
-          this.props.loading && <p>Loading</p>
-        }
         <form onSubmit={this.handleSubmit}>
           <textarea
             value={this.props.temporaryMessage}
@@ -57,7 +54,6 @@ MessagesInput.propTypes =  {
 
 function mapStateToProps(state, ownProps) {
   return {
-    loading: state.chat.loading,
     temporaryMessage: state.chat.temporaryMessage,
     currentUserUID: state.auth.currentUserUID
   };
