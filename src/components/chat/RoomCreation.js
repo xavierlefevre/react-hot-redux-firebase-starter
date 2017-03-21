@@ -27,7 +27,7 @@ class RoomCreation extends Component {
 
   render() {
     return (
-      <form  style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }} onSubmit={this.handleSubmit}>
+      <form style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }} onSubmit={this.handleSubmit}>
         <input
           type="text"
           value={this.props.temporaryRoom}

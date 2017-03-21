@@ -29,17 +29,23 @@ class MessagesInput extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <textarea
-            value={this.props.temporaryMessage}
-            onChange={this.handleChange}
-            placeholder="Type a message"
-            id="textarea"
-          />
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
+      <form
+        onSubmit={this.handleSubmit}
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          width: '500px'
+        }}
+      >
+        <textarea
+          value={this.props.temporaryMessage}
+          onChange={this.handleChange}
+          placeholder="Type a message"
+          id="textarea"
+          style={{ flex: 9 }}
+        />
+        <input type="submit" value="Submit" style={{ flex: 1 }} />
+      </form>
     );
   }
 }
