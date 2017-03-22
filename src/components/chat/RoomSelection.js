@@ -22,19 +22,24 @@ class RoomSelection extends Component {
     return (
       <div className="flex-column align-center">
         <h4>Select a chat room</h4>
-        <div className="selector">
-          {
-            Object.keys(this.props.chatRooms).map((roomKey) => (
-              <div
-                key={roomKey}
-                className="selector-button"
-                onClick={() => this.accessRoom(roomKey)}
-              >
-                <p>{this.props.chatRooms[roomKey].name}</p>
-              </div>
-            ))
-          }
-        </div>
+        {
+          Object.keys(this.props.chatRooms).length > 0
+          && (
+            <div className="selector">
+              {
+                Object.keys(this.props.chatRooms).map((roomKey) => (
+                  <div
+                    key={roomKey}
+                    className="selector-button"
+                    onClick={() => this.accessRoom(roomKey)}
+                  >
+                    <p>{this.props.chatRooms[roomKey].name}</p>
+                  </div>
+                ))
+              }
+            </div>
+          )
+        }
       </div>
     );
   }

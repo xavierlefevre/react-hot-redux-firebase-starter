@@ -57,7 +57,9 @@ class MessagesThread extends Component {
           style={{
             display: 'flex',
             flexDirection: 'column',
+            justifyContent: 'flex-end',
             width: '500px',
+            minHeight: '300px',
             padding: '10px'
           }}
           >
