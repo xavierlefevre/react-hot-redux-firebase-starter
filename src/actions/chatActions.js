@@ -54,6 +54,21 @@ export const getMessageSuccess = (key, content) => ({ type: types.CHAT_GET_MESSA
 
 export const storeTemporaryMessage = message => ({ type: types.CHAT_STORE_TEMPORARY_MESSAGE, message });
 
+export function getLastMessagesAsync(currentRoom) {
+  return (dispatch) => {
+    firebase
+    .database()
+    .ref('messages/' + currentRoom)
+    .limitToLast(10)
+    .once('value')
+    .then(result => {
+      dispatch(getLastMessagesSuccess(result.val()));
+    });
+  };
+}
+export const getLastMessagesSuccess = (messages) => ({ type: types.CHAT_GET_LAST_MESSAGES_SUCCESS, messages });
+export const removeMessages = () => ({ type: types.CHAT_REMOVE_MESSAGES });
+
 export function sendMessageAsync(content, roomKey) {
   return (dispatch) => {
     const messagesRef = firebase.database().ref('messages/' + roomKey);

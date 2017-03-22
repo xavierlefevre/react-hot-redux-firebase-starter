@@ -3,14 +3,21 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as firebase from 'firebase/firebase-browser';
 
-import {accessRoom, getMessageSuccess} from '../../actions/chatActions';
+import {accessRoom, getMessageSuccess, getLastMessagesAsync, removeMessages} from '../../actions/chatActions';
 
 class MessagesThread extends Component {
   componentWillMount() {
     const chatRoomsRef = firebase.database().ref('messages/' + this.props.currentRoom);
     chatRoomsRef.on('child_added', data => {
+      if (!this.props.firstBatchLoaded) return;
       this.props.getMessageSuccess(data.key, data.val());
     });
+
+    this.props.getLastMessages(this.props.currentRoom);
+  }
+
+  componentWillUnmount() {
+    this.props.removeMessages();
   }
 
   render() {
@@ -92,7 +99,10 @@ MessagesThread.propTypes =  {
   currentUser: PropTypes.string,
   rooms: PropTypes.object,
   users: PropTypes.object,
-  getMessageSuccess: PropTypes.func
+  getMessageSuccess: PropTypes.func,
+  getLastMessages: PropTypes.func,
+  removeMessages: PropTypes.func,
+  firstBatchLoaded: PropTypes.bool
 };
 
 function mapStateToProps(state, ownProps) {
@@ -101,13 +111,16 @@ function mapStateToProps(state, ownProps) {
     currentUser: state.user.uid,
     rooms: state.chat.rooms,
     messages: state.chat.messages,
-    users: state.chat.users
+    users: state.chat.users,
+    firstBatchLoaded: state.chat.firstBatchLoaded
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getMessageSuccess: bindActionCreators(getMessageSuccess, dispatch)
+    getMessageSuccess: bindActionCreators(getMessageSuccess, dispatch),
+    getLastMessages: bindActionCreators(getLastMessagesAsync, dispatch),
+    removeMessages: bindActionCreators(removeMessages, dispatch)
   };
 }
 

@@ -50,6 +50,10 @@ export default function chatReducer(state = initialState.chat, action) {
         {messages: Object.assign({}, state.messages, newMessage)}
       );
     }
+    case types.CHAT_GET_LAST_MESSAGES_SUCCESS:
+      return Object.assign({}, state, {messages: action.messages, firstBatchLoaded: true});
+    case types.CHAT_REMOVE_MESSAGES:
+      return Object.assign({}, state, {messages: {}, firstBatchLoaded: false});
     case types.CHAT_STORE_TEMPORARY_MESSAGE:
       return Object.assign({}, state, {temporaryMessage: action.message});
     case types.CHAT_SEND_MESSAGE_SUCCESS:
