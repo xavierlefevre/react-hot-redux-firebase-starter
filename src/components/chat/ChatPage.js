@@ -6,11 +6,13 @@ import * as firebase from 'firebase/firebase-browser';
 import checkAuth from '../requireAuth';
 import {getUsersSuccess} from '../../actions/chatActions';
 
+import ChatHeader from './ChatHeader.js';
 import MessagesThread from './MessagesThread.js';
 import MessagesInput from './MessagesInput.js';
 import RoomSelection from './RoomSelection.js';
 import RoomCreation from './RoomCreation.js';
 import OrSeparator from './OrSeparator.js';
+import ActiveUsers from './ActiveUsers.js';
 
 class ChatPage extends Component {
   componentWillMount() {
@@ -33,8 +35,14 @@ class ChatPage extends Component {
       </div>
       ) : (
       <div>
-        <MessagesThread />
-        <MessagesInput />
+        <ChatHeader />
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <div>
+            <MessagesThread />
+            <MessagesInput />
+          </div>
+          <ActiveUsers />
+        </div>
       </div>
     );
   }
