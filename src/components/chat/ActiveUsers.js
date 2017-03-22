@@ -3,14 +3,24 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as firebase from 'firebase/firebase-browser';
 
-import {getActiveUsersSuccess} from '../../actions/chatActions';
+import {getActiveUserSuccess, removeActiveUsers, removeCurrentUserActiveID} from '../../actions/chatActions';
 
 class ActiveUsers extends Component {
   componentWillMount() {
     const activeUsersRef = firebase.database().ref('activeUsers/' + this.props.currentRoom);
     activeUsersRef.on('child_added', data => {
-      this.props.getActiveUsersSuccess(data.key, data.val());
+      this.props.getActiveUserSuccess(data.key, data.val());
     });
+    activeUsersRef.on('child_removed', data => {
+      this.props.removeActiveUsers();
+      this.props.removeCurrentUserActiveID();
+    });
+  }
+
+  componentWillUnmount() {
+    const activeUserRef = firebase.database()
+    .ref('activeUsers/' + this.props.currentRoom + '/' + this.props.activeChatKey);
+    activeUserRef.remove();
   }
 
   render() {
@@ -42,14 +52,18 @@ class ActiveUsers extends Component {
 
 ActiveUsers.propTypes =  {
   currentRoom: PropTypes.string,
+  activeChatKey: PropTypes.string,
   activeUsers: PropTypes.object,
-  getActiveUsersSuccess: PropTypes.func,
+  getActiveUserSuccess: PropTypes.func,
+  removeActiveUsers: PropTypes.func,
+  removeCurrentUserActiveID: PropTypes.func,
   users: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
   return {
     currentRoom: state.chat.currentRoom,
+    activeChatKey: state.user.activeChatKey,
     activeUsers: state.chat.activeUsers,
     users: state.chat.users
   };
@@ -57,7 +71,9 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getActiveUsersSuccess: bindActionCreators(getActiveUsersSuccess, dispatch)
+    getActiveUserSuccess: bindActionCreators(getActiveUserSuccess, dispatch),
+    removeActiveUsers: bindActionCreators(removeActiveUsers, dispatch),
+    removeCurrentUserActiveID: bindActionCreators(removeCurrentUserActiveID, dispatch)
   };
 }
 

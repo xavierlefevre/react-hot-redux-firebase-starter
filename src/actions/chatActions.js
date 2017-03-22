@@ -20,41 +20,36 @@ export function createRoomAsync(content) {
 }
 export const createRoomSuccess = () => ({ type: types.CHAT_CREATE_ROOM_SUCCESS });
 
-export function accessRoomAsync(user, key) {
+export function accessRoomAsync(user, roomKey) {
   return (dispatch) => {
-    dispatch(accessRoom(key));
+    dispatch(accessRoom(roomKey));
 
-    const activeUsersRef = firebase.database().ref('activeUsers/' + key);
+    const activeUsersRef = firebase.database().ref('activeUsers/' + roomKey);
     const newActiveUser = activeUsersRef.push();
-    console.log('user', user);
+
     newActiveUser.set(user)
     .then(result => {
-      console.log('yo');
-      dispatch(accessRoomSuccess());
+      dispatch(addCurrentUserActiveID(newActiveUser.key));
     });
   };
 }
-export const accessRoom = key => ({ type: types.CHAT_ACCESS_ROOM, key });
-export const accessRoomSuccess = () => ({ type: types.CHAT_ACCESS_ROOM_SUCCESS });
+export const accessRoom = roomKey => ({ type: types.CHAT_ACCESS_ROOM, roomKey });
 
-export function leaveRoomAsync(user, key) {
+export function leaveRoomAsync(roomKey, activeUserKey) {
   return (dispatch) => {
     dispatch(accessRoom());
 
-    const activeUsersRef = firebase.database().ref('activeUsers/' + key);
-    const newActiveUser = activeUsersRef.push();
-    console.log('user', user);
-    newActiveUser.set(user)
-    .then(result => {
-      console.log('yo');
-      dispatch(leaveRoomSuccess());
-    });
+    const activeUserRef = firebase.database().ref('activeUsers/' + roomKey + '/' + activeUserKey);
+    activeUserRef.remove();
   };
 }
 export const leaveRoomSuccess = () => ({ type: types.CHAT_LEAVE_ROOM_SUCCESS });
 
 // Chat active users
-export const getActiveUsersSuccess = (key, content) => ({ type: types.CHAT_GET_ACTIVE_USERS_SUCCESS, key, content });
+export const getActiveUserSuccess = (key, content) => ({ type: types.CHAT_GET_ACTIVE_USER_SUCCESS, key, content });
+export const removeActiveUsers = () => ({ type: types.CHAT_REMOVE_ACTIVE_USERS });
+export const addCurrentUserActiveID = (activeChatKey) => ({ type: types.CHAT_ADD_CURRENT_USER_ACTIVE_ID, activeChatKey });
+export const removeCurrentUserActiveID = () => ({ type: types.CHAT_REMOVE_CURRENT_USER_ACTIVE_ID });
 
 // Chat messages
 export const getMessageSuccess = (key, content) => ({ type: types.CHAT_GET_MESSAGE_SUCCESS, key, content });

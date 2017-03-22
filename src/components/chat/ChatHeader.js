@@ -7,11 +7,11 @@ import {accessRoom} from '../../actions/chatActions';
 class ChatHeader extends Component {
   constructor(props) {
     super(props);
-    this.accessRoom = this.accessRoom.bind(this);
+    this.leaveRoom = this.leaveRoom.bind(this);
   }
 
-  accessRoom() {
-    this.props.accessRoom();
+  leaveRoom() {
+    this.props.leaveRoom();
   }
 
   render() {
@@ -26,7 +26,7 @@ class ChatHeader extends Component {
             cursor: 'pointer',
             marginRight: '20px'
           }}
-          onClick={this.accessRoom}
+          onClick={this.leaveRoom}
         >
           <p style={{ margin: 0 }}>{'< Leave'}</p>
         </div>
@@ -39,7 +39,7 @@ class ChatHeader extends Component {
 ChatHeader.propTypes =  {
   currentRoom: PropTypes.string,
   rooms: PropTypes.object,
-  accessRoom: PropTypes.func
+  leaveRoom: PropTypes.func
 };
 
 function mapStateToProps(state, ownProps) {
@@ -51,7 +51,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    accessRoom: bindActionCreators(accessRoom, dispatch)
+    leaveRoom: bindActionCreators(accessRoom, dispatch)
   };
 }
 
