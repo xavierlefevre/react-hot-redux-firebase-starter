@@ -14,7 +14,7 @@ This app includes:
 - [x] User can see the list of users in a chat room
 - [x] User can create a chat room by entering a name
 
-The chat module is accessible from the top nav bar when clicking on **chat**.
+After creating an account, the chat module is accessible from the top nav bar when clicking on **chat**.
 
 #### What remains to be tackled:
 - [ ] So far Firebase does not automatically remove a user inactive for too long or that left the website
@@ -23,6 +23,7 @@ The chat module is accessible from the top nav bar when clicking on **chat**.
 - [ ] Loading messages or icons
 - [ ] A proper error system
 - [ ] More unit testing for a stronger code
+- [ ] Improving the CSS by putting it in CSS files and not JSX inline
 
 This code is based on: [Firebase 3.0 Starter using React Redux](https://github.com/douglascorrea/react-hot-redux-firebase-starter)
 
