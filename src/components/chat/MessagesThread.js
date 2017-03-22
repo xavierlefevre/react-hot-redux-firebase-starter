@@ -16,6 +16,24 @@ class MessagesThread extends Component {
     this.props.getLastMessages(this.props.currentRoom);
   }
 
+  componentDidMount() {
+    const node = this.refs.scrollableDiv;
+    node.scrollTop = node.scrollHeight;
+  }
+
+  componentWillUpdate() {
+    const node = this.refs.scrollableDiv;
+    this.shouldScrollBottom = (node.scrollTop + node.offsetHeight <= node.scrollHeight + 20
+      && node.scrollTop + node.offsetHeight >= node.scrollHeight - 20);
+  }
+
+  componentDidUpdate() {
+    if (this.shouldScrollBottom) {
+      const node = this.refs.scrollableDiv;
+      node.scrollTop = node.scrollHeight;
+    }
+  }
+
   componentWillUnmount() {
     this.props.removeMessages();
   }
@@ -23,6 +41,7 @@ class MessagesThread extends Component {
   render() {
     return (
       <div
+        ref="scrollableDiv"
         style={{
           height: '300px',
           overflow: 'auto',
