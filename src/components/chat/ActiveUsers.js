@@ -29,10 +29,8 @@ class ActiveUsers extends Component {
   render() {
     return (
       <div
+        className="flex-column align-center"
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
           marginRight: '70px',
           marginLeft: '70px'
         }}
@@ -43,9 +41,12 @@ class ActiveUsers extends Component {
           && Object.keys(this.props.activeUsers).length > 0
           && Object.keys(this.props.activeUsers)
           .map((activeUserKey) => (
-            <p key={activeUserKey}>
-              {this.props.users[this.props.activeUsers[activeUserKey]].email}
-            </p>
+            <div key={activeUserKey} className="flex-column align-center">
+              <p>
+                {this.props.users[this.props.activeUsers[activeUserKey]].email}
+              </p>
+              <div style={{ margin: '5px 0 5px 0',height: '1px', alignSelf: 'stretch', backgroundColor: 'grey' }} />
+            </div>
           ))
         }
       </div>

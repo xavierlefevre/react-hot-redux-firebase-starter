@@ -18,16 +18,16 @@ p {
   flex-direction: column;
 }
 
+.align-center {
+  align-items: center;
+}
+
 .main-container {
   align-items: center;
 }
 
 .room-container {
   margin-top: 70px;
-}
-
-.align-center {
-  align-items: center;
 }
 
 .selector {

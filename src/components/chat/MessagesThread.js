@@ -24,8 +24,7 @@ class MessagesThread extends Component {
     return (
       <div
         style={{
-          maxHeight: '300px',
-          minHeight: '100px',
+          height: '300px',
           overflow: 'auto',
           width: '500px',
           margin: 0,

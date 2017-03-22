@@ -16,21 +16,35 @@ class ChatHeader extends Component {
 
   render() {
     return (
-      <div style={{ display: 'flex', flexDirection: 'row', marginTop: '20px', alignItems: 'center' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          marginTop: '50px',
+          alignItems: 'center',
+          marginBottom: '20px'
+        }}
+      >
         <div
           style={{
-            backgroundColor: 'rgb(200, 200, 200)',
+            borderColor: 'rgb(200, 200, 200)',
+            borderWidth: '1px',
+            borderStyle: 'solid',
+            borderRadius: '45px',
             width: '70px',
             height: '30px',
             padding: '5px',
             cursor: 'pointer',
-            marginRight: '20px'
+            marginRight: '20px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
           }}
           onClick={this.leaveRoom}
         >
           <p style={{ margin: 0 }}>{'< Leave'}</p>
         </div>
-        <h1>{this.props.rooms[this.props.currentRoom].name}</h1>
+        <h1 style={{ margin: 0 }}>{this.props.rooms[this.props.currentRoom].name}</h1>
       </div>
     );
   }

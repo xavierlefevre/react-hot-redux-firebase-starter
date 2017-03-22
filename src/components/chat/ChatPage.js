@@ -33,14 +33,16 @@ class ChatPage extends Component {
         </div>
       </div>
       ) : (
-      <div>
-        <ChatHeader />
-        <div className="flex-row">
-          <div>
-            <MessagesThread />
-            <MessagesInput />
+      <div className="flex-column main-container">
+        <div>
+          <ChatHeader />
+          <div className="flex-row">
+            <div>
+              <MessagesThread />
+              <MessagesInput />
+            </div>
+            <ActiveUsers />
           </div>
-          <ActiveUsers />
         </div>
       </div>
     );
