@@ -18,11 +18,12 @@ export default {
   },
   ajaxCallsInProgress: 0,
   chat: {
-    temporaryMessage: '',
+    rooms: {},
     messages: {},
-    loading: null,
-    error: null,
-    firstBatchLoaded: false,
-    users: {}
+    activeUsers: {},
+    temporaryRoom: '',
+    currentRoom: null,
+    temporaryMessage: '',
+    activeChatKey: ''
   }
 };

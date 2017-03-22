@@ -2,48 +2,87 @@ import * as firebase from 'firebase/firebase-browser';
 
 import * as types from './actionTypes';
 
-export const storeTemporaryMessage = message => ({ type: types.CHAT_STORE_TEMPORARY_MESSAGE, message });
+// Chat rooms
+export const getChatRoomsSuccess = (key, content) => ({type: types.CHAT_GET_ROOMS_SUCCESS, key, content});
 
-export function sendMessageAsync(messageContent) {
+export const storeTemporaryRoom = title => ({ type: types.CHAT_STORE_TEMPORARY_ROOM, title });
+
+export function createRoomAsync(content) {
   return (dispatch) => {
-    dispatch(sendMessage());
+    const chatRoomsRef = firebase.database().ref('chatRooms');
+    const newChatRoom = chatRoomsRef.push();
 
-    const messagesRef = firebase.database().ref('messages');
-    const newMessage = messagesRef.push();
-
-    newMessage.set(messageContent)
+    newChatRoom.set(content)
     .then(result => {
-      dispatch(sendMessageSuccess(newMessage.key, messageContent));
-    })
-    .catch(error => {
-      dispatch(sendMessageError(error));
+      dispatch(createRoomSuccess());
     });
   };
 }
-export const sendMessage = () => ({ type: types.CHAT_SEND_MESSAGE });
-export const sendMessageSuccess = (messageKey, messageContent) => (
-  {type: types.CHAT_SEND_MESSAGE_SUCCESS, messageKey, messageContent}
-);
-export const sendMessageError = error => ({ type: types.CHAT_SEND_MESSAGE_ERROR, error });
+export const createRoomSuccess = () => ({ type: types.CHAT_CREATE_ROOM_SUCCESS });
 
-export function getLastMessages() {
+export const accessRoom = roomKey => ({ type: types.CHAT_ACCESS_ROOM, roomKey });
+
+export function leaveRoomAsync(roomKey, activeUserKey) {
+  return (dispatch) => {
+    dispatch(accessRoom());
+
+    const activeUserRef = firebase.database().ref('activeUsers/' + roomKey + '/' + activeUserKey);
+    activeUserRef.remove();
+  };
+}
+export const leaveRoomSuccess = () => ({ type: types.CHAT_LEAVE_ROOM_SUCCESS });
+
+// Chat active users
+export function addActiveUserAsync(user, roomKey) {
+  return (dispatch) => {
+    const activeUsersRef = firebase.database().ref('activeUsers/' + roomKey);
+    const newActiveUser = activeUsersRef.push();
+
+    newActiveUser.set(user)
+    .then(result => {
+      dispatch(addCurrentUserActiveID(newActiveUser.key));
+    });
+  };
+}
+export const getActiveUserSuccess = (key, content) => ({ type: types.CHAT_GET_ACTIVE_USER_SUCCESS, key, content });
+export const removeActiveUsers = () => ({ type: types.CHAT_REMOVE_ACTIVE_USERS });
+export const addCurrentUserActiveID = (activeChatKey) => ({ type: types.CHAT_ADD_CURRENT_USER_ACTIVE_ID, activeChatKey });
+export const removeCurrentUserActiveID = () => ({ type: types.CHAT_REMOVE_CURRENT_USER_ACTIVE_ID });
+
+// Chat messages
+export const getMessageSuccess = (key, content) => ({ type: types.CHAT_GET_MESSAGE_SUCCESS, key, content });
+
+export const storeTemporaryMessage = message => ({ type: types.CHAT_STORE_TEMPORARY_MESSAGE, message });
+
+export function getLastMessagesAsync(currentRoom) {
   return (dispatch) => {
     firebase
     .database()
-    .ref('messages')
+    .ref('messages/' + currentRoom)
     .limitToLast(10)
     .once('value')
     .then(result => {
       dispatch(getLastMessagesSuccess(result.val()));
-    })
-    .catch(error => {
-      dispatch(getLastMessagesSuccess(error));
     });
   };
 }
 export const getLastMessagesSuccess = (messages) => ({ type: types.CHAT_GET_LAST_MESSAGES_SUCCESS, messages });
-export const getLastMessagesError = error => ({ type: types.CHAT_GET_LAST_MESSAGES_ERROR, error });
+export const removeMessages = () => ({ type: types.CHAT_REMOVE_MESSAGES });
 
+export function sendMessageAsync(content, roomKey) {
+  return (dispatch) => {
+    const messagesRef = firebase.database().ref('messages/' + roomKey);
+    const newMessage = messagesRef.push();
+
+    newMessage.set(content)
+    .then(result => {
+      dispatch(sendMessageSuccess());
+    });
+  };
+}
+export const sendMessageSuccess = () => ({type: types.CHAT_SEND_MESSAGE_SUCCESS});
+
+// Chat users
 export const getUsersSuccess = (userKey, userContent) => (
   {type: types.CHAT_GET_USERS_SUCCESS, userKey, userContent}
 );

@@ -10,6 +10,7 @@ class MessagesInput extends Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.checkForEnter = this.checkForEnter.bind(this);
   }
 
   handleChange(event) {
@@ -21,34 +22,51 @@ class MessagesInput extends Component {
     if (this.props.temporaryMessage) {
       this.props.sendMessage({
         content: this.props.temporaryMessage,
-        date: new Date().getTime(),
-        user: this.props.currentUserUID
-      });
+        timestamp: new Date().getTime(),
+        userID: this.props.currentUserUID
+      }, this.props.currentRoom);
+    }
+  }
+
+  checkForEnter(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      if (this.props.temporaryMessage) {
+        this.props.sendMessage({
+          content: this.props.temporaryMessage,
+          timestamp: new Date().getTime(),
+          userID: this.props.currentUserUID
+        }, this.props.currentRoom);
+      }
     }
   }
 
   render() {
     return (
-      <div>
-        {
-          this.props.loading && <p>Loading</p>
-        }
-        <form onSubmit={this.handleSubmit}>
-          <textarea
-            value={this.props.temporaryMessage}
-            onChange={this.handleChange}
-            placeholder="Type a message"
-            id="textarea"
-          />
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
+      <form
+        onSubmit={this.handleSubmit}
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          width: '500px'
+        }}
+      >
+        <textarea
+          value={this.props.temporaryMessage}
+          onChange={this.handleChange}
+          placeholder="Type a message"
+          id="textarea"
+          style={{ flex: 9, outline: 'none' }}
+          onKeyDown={this.checkForEnter}
+        />
+        <input type="submit" value="Submit" style={{ flex: 1 }} />
+      </form>
     );
   }
 }
 
 MessagesInput.propTypes =  {
-  loading: PropTypes.bool,
+  currentRoom: PropTypes.string,
   temporaryMessage: PropTypes.string,
   currentUserUID: PropTypes.string,
   sendMessage: PropTypes.func.isRequired,
@@ -57,7 +75,7 @@ MessagesInput.propTypes =  {
 
 function mapStateToProps(state, ownProps) {
   return {
-    loading: state.chat.loading,
+    currentRoom: state.chat.currentRoom,
     temporaryMessage: state.chat.temporaryMessage,
     currentUserUID: state.auth.currentUserUID
   };

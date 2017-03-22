@@ -3,3 +3,54 @@
   border: grey 1px solid;
   resize: none;
 }
+
+p {
+  margin: 0 !important;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.main-container {
+  align-items: center;
+}
+
+.room-container {
+  margin-top: 70px;
+}
+
+.selector {
+  width: 120px;
+  background-color: rgb(250, 250, 250);
+  border-color: rgb(160, 160, 160);
+  border-width: 1px;
+  border-style: solid;
+  margin-top: 20px;
+}
+
+.selector-button {
+  width: 100%;
+  text-align: center;
+  margin: 0px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.room-creation-form {
+  justify-content: center;
+  margin-top: 20px;
+}

@@ -1,12 +1,4 @@
 {
-  "messages": {
-    "-KfhT0gE-cVUuyJ2s6QN": {
-      "date": 1450039124267, "user": "dVvuvXoSdNMU2sQ1gD56KrWQ33V2", "content": "Hello guys, what are you up to today?"
-    },
-    "-Kfht6gE-cVUsyJ5s6QN": {
-      "date": 1490023145267, "user": "JsvRahjDooORoa0rTZ5jjSseYFJ2", "content": "Hi Xav, nice to hear from you"
-    }
-  },
   "users": {
     "dVvuvXoSdNMU2sQ1gD56KrWQ33V2": {
       "email": "xavierl@bam.tech",
@@ -15,6 +7,33 @@
     "JsvRahjDooORoa0rTZ5jjSseYFJ2": {
       "email": "luma.gonzales@lol.tech",
       "uid": "JsvRahjDooORoa0rTZ5jjSseYFJ2"
+    },
+    "xMLnXvjSY1QfrkH4ng3HpWcLFf43": {
+      "email": "florent@gmail.com",
+      "uid": "xMLnXvjSY1QfrkH4ng3HpWcLFf43"
+    }
+  },
+  "chatRooms": {
+    "-KfmJ3rlNwLtNha3hfgO": {
+      "name": "Faune"
+    },
+    "-KfmJTeaXcstloLVJdLr": {
+      "name": "Flore"
+    }
+  },
+  "activeUsers": {},
+  "messages": {
+    "-KfmJ3rlNwLtNha3hfgO": {
+      "-KfhT0gE-cVUuyJ2s6QN": {
+        "timestamp": 1450039124267,
+        "userID": "dVvuvXoSdNMU2sQ1gD56KrWQ33V2",
+        "content": "Hello guys, what are you up to today?"
+      },
+      "-Kfht6gE-cVUsyJ5s6QN": {
+        "timestamp": 1490023145267,
+        "userID": "JsvRahjDooORoa0rTZ5jjSseYFJ2",
+        "content": "Hi Xav, nice to hear from you"
+      }
     }
   }
 }
