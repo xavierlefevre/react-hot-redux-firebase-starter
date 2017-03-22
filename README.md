@@ -18,6 +18,8 @@ The chat module is accessible from the top nav bar when clicking on **chat**.
 
 #### What remains to be tackled:
 - [ ] So far Firebase does not automatically remove a user inactive for too long or that left the website
+- [ ] Need to investigate if the firebase listeners are well dismounted
+- [ ] If the app starts to get heavy on messages, the listeners are pulling all previous messages, which is quite heavy
 - [ ] Loading messages or icons
 - [ ] A proper error system
 - [ ] More unit testing for a stronger code
