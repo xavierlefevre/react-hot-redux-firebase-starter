@@ -25,9 +25,8 @@ class ChatPage extends Component {
   render() {
     return !this.props.currentRoom
       ? (
-      <div>
-        <h1>Chat</h1>
-        <div style={{ display: 'flex', flexDirection: 'row', marginTop: '30px' }}>
+      <div className="flex-column main-container">
+        <div className="flex-row room-container">
           <RoomSelection />
           <OrSeparator />
           <RoomCreation />
@@ -36,7 +35,7 @@ class ChatPage extends Component {
       ) : (
       <div>
         <ChatHeader />
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <div className="flex-row">
           <div>
             <MessagesThread />
             <MessagesInput />

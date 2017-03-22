@@ -20,35 +20,21 @@ class RoomSelection extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          width: 120,
-          backgroundColor: 'rgb(250, 250, 250)',
-          borderColor: 'rgb(160, 160, 160)',
-          borderWidth: 1,
-          borderStyle: 'solid'
-        }}
-      >
-        {
-          Object.keys(this.props.chatRooms).map((roomKey) => (
-            <div
-              key={roomKey}
-              style={{
-                width: '100%',
-                textAlign: 'center',
-                margin: 0,
-                height: 40,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                cursor: 'pointer'
-              }}
-              onClick={() => this.accessRoom(roomKey)}
-            >
-              <p style={{ margin: 0 }}>{this.props.chatRooms[roomKey].name}</p>
-            </div>
-          ))
-        }
+      <div className="flex-column align-center">
+        <h4>Select a chat room</h4>
+        <div className="selector">
+          {
+            Object.keys(this.props.chatRooms).map((roomKey) => (
+              <div
+                key={roomKey}
+                className="selector-button"
+                onClick={() => this.accessRoom(roomKey)}
+              >
+                <p>{this.props.chatRooms[roomKey].name}</p>
+              </div>
+            ))
+          }
+        </div>
       </div>
     );
   }
