@@ -16,5 +16,14 @@ export default {
     currentUserUID: null,
     initialized: false
   },
-  ajaxCallsInProgress: 0
+  ajaxCallsInProgress: 0,
+  chat: {
+    rooms: {},
+    messages: {},
+    activeUsers: {},
+    temporaryRoom: '',
+    currentRoom: null,
+    temporaryMessage: '',
+    activeChatKey: ''
+  }
 };

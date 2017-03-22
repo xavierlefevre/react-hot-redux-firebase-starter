@@ -1,55 +1,36 @@
-Firebase 3.0 Starter using React Redux
-=====================
 
-This is a Firebase 3.0 start using React and Redux.
+# Web Instant Messaging App
 
-It uses the latest version of libraries, including the brand new React Hot Loader ([still beta](https://github.com/gaearon/react-hot-loader/pull/240))
+This app includes:
 
-## Stack
+#### Version 1: single chat room
+- [x] User can read the last 10 messages of the room when entering
+- [x] User can read new messages from other users
+- [x] User can write and send new messages
 
-- React
-  - [X] React `15.1.0`
-  - [X] React Hot Loader `3.0.0-beta.2`
-  - [X] React Router `2.4.1`
-- Redux
-  - [X] Redux `3.5.2`
-  - [X] React Redux `4.4.5`
-  - [X] React Router Redux `4.0.4`
-  - [X] Redux Thunk `2.1.0`
-  - [X] Redux Dev Tools
-- Webpack    
-  - [X] Webpack `1.13.1`
-  - [X] Webpack Dev Middleware `1.6.1`
-  - [X] Webpack Hot Middleware `2.10.0`
-- Firebase
-  - [X] Firebase `3.0.3`
-- Linting
-  - [X] Eslint `2.11.1`
-- Styles
-  - [X] Bootstrap `3.3.6`
-- Testing
-  - [X] Mocha `2.5.3`
-  - [X] Enzyme `2.3.0`
+#### Version 2: multiple chat rooms
+- [x] User can see a list of available chat rooms
+- [x] User can join and leave a chatroom
+- [x] User can see the list of users in a chat room
+- [x] User can create a chat room by entering a name
 
+After creating an account, the chat module is accessible from the top nav bar when clicking on **chat**.
 
-## Features
+#### What remains to be tackled:
+- [ ] So far Firebase does not automatically remove a user inactive for too long or that left the website
+- [ ] Need to investigate if the firebase listeners are well dismounted
+- [ ] If the app starts to get heavy on messages, the listeners are pulling all previous messages, which is quite heavy
+- [ ] Loading messages or icons
+- [ ] A proper error system
+- [ ] More unit testing for a stronger code
+- [ ] Improving the CSS by putting it in CSS files and not JSX inline
 
-- Firebase:
-  - Auth
-    - [X] Authentication setup (Registration/Login) 
-    - [X] state.user sync with Firebase Auth
-    - [X] Protected routes (needs to be logged in)    
-    - [X] Store users on `'/users/<user.uid>'`
-    - [X] Admin flag on user (`'/isAdmin/<user.uid>' :: bool`)
-    - [X] Admin Protected routes (needs to be logged in)
-  - Database
-    - [X] Set example
-    - [X] Query example 
+This code is based on: [Firebase 3.0 Starter using React Redux](https://github.com/douglascorrea/react-hot-redux-firebase-starter)
 
 ## Usage
 
 ```
-git clone git@github.com:douglascorrea/react-hot-redux-firebase-starter.git
+git clone https://github.com/xavierlefevre/react-hot-redux-firebase-starter.git
 cd react-hot-redux-firebase-starter
 npm install
 npm start -s
@@ -60,7 +41,3 @@ npm start -s
 - `npm start` run the web app with lint and tests in watch mode
 - `npm run lint` linting javascript code usig eslint
 - `npm run test` test using mocha and enzyme
-
-## Roadmap
-
-Check our [roadmap issues](https://github.com/douglascorrea/react-hot-redux-firebase-starter/issues?q=is%3Aissue+is%3Aopen+label%3Aroadmap)
