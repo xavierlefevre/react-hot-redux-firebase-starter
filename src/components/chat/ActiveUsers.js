@@ -3,10 +3,13 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as firebase from 'firebase/firebase-browser';
 
-import {getActiveUserSuccess, removeActiveUsers, removeCurrentUserActiveID} from '../../actions/chatActions';
+import {getActiveUserSuccess, removeActiveUsers,
+  removeCurrentUserActiveID, addActiveUserAsync} from '../../actions/chatActions';
 
 class ActiveUsers extends Component {
   componentWillMount() {
+    this.props.addActiveUser(this.props.currentUser, this.props.currentRoom);
+
     const activeUsersRef = firebase.database().ref('activeUsers/' + this.props.currentRoom);
     activeUsersRef.on('child_added', data => {
       this.props.getActiveUserSuccess(data.key, data.val());
@@ -52,9 +55,11 @@ class ActiveUsers extends Component {
 
 ActiveUsers.propTypes =  {
   currentRoom: PropTypes.string,
+  currentUser: PropTypes.string,
   activeChatKey: PropTypes.string,
   activeUsers: PropTypes.object,
   getActiveUserSuccess: PropTypes.func,
+  addActiveUser: PropTypes.func,
   removeActiveUsers: PropTypes.func,
   removeCurrentUserActiveID: PropTypes.func,
   users: PropTypes.object
@@ -63,7 +68,8 @@ ActiveUsers.propTypes =  {
 function mapStateToProps(state, ownProps) {
   return {
     currentRoom: state.chat.currentRoom,
-    activeChatKey: state.user.activeChatKey,
+    currentUser: state.user.uid,
+    activeChatKey: state.chat.activeChatKey,
     activeUsers: state.chat.activeUsers,
     users: state.chat.users
   };
@@ -73,6 +79,7 @@ function mapDispatchToProps(dispatch) {
   return {
     getActiveUserSuccess: bindActionCreators(getActiveUserSuccess, dispatch),
     removeActiveUsers: bindActionCreators(removeActiveUsers, dispatch),
+    addActiveUser: bindActionCreators(addActiveUserAsync, dispatch),
     removeCurrentUserActiveID: bindActionCreators(removeCurrentUserActiveID, dispatch)
   };
 }

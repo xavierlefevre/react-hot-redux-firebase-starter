@@ -36,6 +36,10 @@ export default function chatReducer(state = initialState.chat, action) {
         {activeUsers: {}}
       );
     }
+    case types.CHAT_ADD_CURRENT_USER_ACTIVE_ID:
+      return Object.assign({}, state, {activeChatKey: action.activeChatKey});
+    case types.CHAT_REMOVE_CURRENT_USER_ACTIVE_ID:
+      return Object.assign({}, state, {activeChatKey: ''});
     // Chat messages
     case types.CHAT_GET_MESSAGE_SUCCESS: {
       const newMessage = {};

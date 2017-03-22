@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as firebase from 'firebase/firebase-browser';
 
-import {getChatRoomsSuccess, accessRoomAsync} from '../../actions/chatActions';
+import {getChatRoomsSuccess, accessRoom} from '../../actions/chatActions';
 
 class RoomSelection extends Component {
 
@@ -14,8 +14,8 @@ class RoomSelection extends Component {
     });
   }
 
-  accessRoom(user, roomKey) {
-    this.props.accessRoom(user, roomKey);
+  accessRoom(roomKey) {
+    this.props.accessRoom(roomKey);
   }
 
   render() {
@@ -43,7 +43,7 @@ class RoomSelection extends Component {
                 justifyContent: 'center',
                 cursor: 'pointer'
               }}
-              onClick={() => this.accessRoom(this.props.currentUser, roomKey)}
+              onClick={() => this.accessRoom(roomKey)}
             >
               <p style={{ margin: 0 }}>{this.props.chatRooms[roomKey].name}</p>
             </div>
@@ -70,7 +70,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    accessRoom: bindActionCreators(accessRoomAsync, dispatch),
+    accessRoom: bindActionCreators(accessRoom, dispatch),
     getChatRoomsSuccess: bindActionCreators(getChatRoomsSuccess, dispatch)
   };
 }

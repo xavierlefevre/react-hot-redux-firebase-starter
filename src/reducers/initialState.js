@@ -23,6 +23,7 @@ export default {
     activeUsers: {},
     temporaryRoom: '',
     currentRoom: null,
-    temporaryMessage: ''
+    temporaryMessage: '',
+    activeChatKey: ''
   }
 };

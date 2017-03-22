@@ -20,19 +20,6 @@ export function createRoomAsync(content) {
 }
 export const createRoomSuccess = () => ({ type: types.CHAT_CREATE_ROOM_SUCCESS });
 
-export function accessRoomAsync(user, roomKey) {
-  return (dispatch) => {
-    dispatch(accessRoom(roomKey));
-
-    const activeUsersRef = firebase.database().ref('activeUsers/' + roomKey);
-    const newActiveUser = activeUsersRef.push();
-
-    newActiveUser.set(user)
-    .then(result => {
-      dispatch(addCurrentUserActiveID(newActiveUser.key));
-    });
-  };
-}
 export const accessRoom = roomKey => ({ type: types.CHAT_ACCESS_ROOM, roomKey });
 
 export function leaveRoomAsync(roomKey, activeUserKey) {
@@ -46,6 +33,17 @@ export function leaveRoomAsync(roomKey, activeUserKey) {
 export const leaveRoomSuccess = () => ({ type: types.CHAT_LEAVE_ROOM_SUCCESS });
 
 // Chat active users
+export function addActiveUserAsync(user, roomKey) {
+  return (dispatch) => {
+    const activeUsersRef = firebase.database().ref('activeUsers/' + roomKey);
+    const newActiveUser = activeUsersRef.push();
+
+    newActiveUser.set(user)
+    .then(result => {
+      dispatch(addCurrentUserActiveID(newActiveUser.key));
+    });
+  };
+}
 export const getActiveUserSuccess = (key, content) => ({ type: types.CHAT_GET_ACTIVE_USER_SUCCESS, key, content });
 export const removeActiveUsers = () => ({ type: types.CHAT_REMOVE_ACTIVE_USERS });
 export const addCurrentUserActiveID = (activeChatKey) => ({ type: types.CHAT_ADD_CURRENT_USER_ACTIVE_ID, activeChatKey });
