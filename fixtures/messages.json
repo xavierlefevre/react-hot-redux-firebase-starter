@@ -19,12 +19,8 @@
   },
   "activeUsers": {
     "-KfmJ3rlNwLtNha3hfgO": {
-      "user1": {
-        "uid": "dVvuvXoSdNMU2sQ1gD56KrWQ33V2"
-      },
-      "user2": {
-        "uid": "JsvRahjDooORoa0rTZ5jjSseYFJ2"
-      }
+      "user1" : "dVvuvXoSdNMU2sQ1gD56KrWQ33V2",
+      "user2": "JsvRahjDooORoa0rTZ5jjSseYFJ2"
     }
   },
   "messages": {

@@ -20,7 +20,41 @@ export function createRoomAsync(content) {
 }
 export const createRoomSuccess = () => ({ type: types.CHAT_CREATE_ROOM_SUCCESS });
 
+export function accessRoomAsync(user, key) {
+  return (dispatch) => {
+    dispatch(accessRoom(key));
+
+    const activeUsersRef = firebase.database().ref('activeUsers/' + key);
+    const newActiveUser = activeUsersRef.push();
+    console.log('user', user);
+    newActiveUser.set(user)
+    .then(result => {
+      console.log('yo');
+      dispatch(accessRoomSuccess());
+    });
+  };
+}
 export const accessRoom = key => ({ type: types.CHAT_ACCESS_ROOM, key });
+export const accessRoomSuccess = () => ({ type: types.CHAT_ACCESS_ROOM_SUCCESS });
+
+export function leaveRoomAsync(user, key) {
+  return (dispatch) => {
+    dispatch(accessRoom());
+
+    const activeUsersRef = firebase.database().ref('activeUsers/' + key);
+    const newActiveUser = activeUsersRef.push();
+    console.log('user', user);
+    newActiveUser.set(user)
+    .then(result => {
+      console.log('yo');
+      dispatch(leaveRoomSuccess());
+    });
+  };
+}
+export const leaveRoomSuccess = () => ({ type: types.CHAT_LEAVE_ROOM_SUCCESS });
+
+// Chat active users
+export const getActiveUsersSuccess = (key, content) => ({ type: types.CHAT_GET_ACTIVE_USERS_SUCCESS, key, content });
 
 // Chat messages
 export const getMessageSuccess = (key, content) => ({ type: types.CHAT_GET_MESSAGE_SUCCESS, key, content });

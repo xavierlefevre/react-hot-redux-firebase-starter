@@ -19,6 +19,16 @@ export default function chatReducer(state = initialState.chat, action) {
       return Object.assign({}, state, {temporaryRoom: ''});
     case types.CHAT_ACCESS_ROOM:
       return Object.assign({}, state, {currentRoom: action.key, messages: {}});
+    // Chat active users
+    case types.CHAT_GET_ACTIVE_USERS_SUCCESS: {
+      const newUser = {};
+      newUser[action.key] = action.content;
+      return Object.assign(
+        {},
+        state,
+        {activeUsers: Object.assign({}, state.activeUsers, newUser)}
+      );
+    }
     // Chat messages
     case types.CHAT_GET_MESSAGE_SUCCESS: {
       const newMessage = {};

@@ -20,6 +20,7 @@ export default {
   chat: {
     rooms: {},
     messages: {},
+    activeUsers: {},
     temporaryRoom: '',
     currentRoom: null,
     temporaryMessage: ''
