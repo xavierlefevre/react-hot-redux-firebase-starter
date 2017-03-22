@@ -16,7 +16,13 @@ This app includes:
 
 The chat module is accessible from the top nav bar when clicking on **chat**.
 
-It is based on: [Firebase 3.0 Starter using React Redux](https://github.com/douglascorrea/react-hot-redux-firebase-starter)
+#### What remains to be tackled:
+- [ ] So far Firebase does not automatically remove a user inactive for too long or that left the website
+- [ ] Loading messages or icons
+- [ ] A proper error system
+- [ ] More unit testing for a stronger code
+
+This code is based on: [Firebase 3.0 Starter using React Redux](https://github.com/douglascorrea/react-hot-redux-firebase-starter)
 
 ## Usage
 
